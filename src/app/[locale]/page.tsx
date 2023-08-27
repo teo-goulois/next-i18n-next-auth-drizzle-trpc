@@ -8,7 +8,8 @@ import PageLayout from '../../components/PageLayout';
 /* import MessagesAsPropsCounter from '../../components/client/01-MessagesAsPropsCounter';
 import MessagesOnClientCounter from '../../components/client/02-MessagesOnClientCounter';
  */import {Link} from '../../navigation';
-
+import { Todos } from '@/components/example/Todos';
+import { ServerTodos } from '@/components/example/ServerTodos';
 type Props = {
   searchParams: Record<string, string>;
 };
@@ -22,36 +23,12 @@ export default function Index({searchParams}: Props) {
   return (
     <PageLayout title={t('title')}>
       <p>{t('description')}</p>
-      <p data-testid="RichText">
-        {t.rich('rich', {important: (chunks) => <b>{chunks}</b>})}
-      </p>
-      <p
-        dangerouslySetInnerHTML={{__html: t.raw('rich')}}
-        data-testid="RawText"
-      />
-      <p data-testid="GlobalDefaults">{t.rich('globalDefaults')}</p>
-      {/* @ts-expect-error Purposefully trigger an error */}
-      <p data-testid="MissingMessage">{t('missing')}</p>
-      <p data-testid="CurrentTime">
-        {format.dateTime(now, 'medium')} ({timeZone || 'N/A'})
-      </p>
-      <p data-testid="CurrentTimeRelative">{format.relativeTime(now)}</p>
-      <p data-testid="Number">
-        {format.number(23102, {style: 'currency', currency: 'EUR'})}
-      </p>
+     
       <LocaleSwitcher />
-      {/* <MessagesAsPropsCounter />
-      <MessagesOnClientCounter />
-      <CoreLibrary />
-      <ClientRouterWithoutProvider />
-      <div>
-        <Link href={{pathname: '/', query: {test: true}}}>
-          Go to home with query param
-        </Link>
-      </div>
-      <ClientLink href="/">Link on client without provider</ClientLink> */}
       <p data-testid="SearchParams">{JSON.stringify(searchParams, null, 2)}</p>
-      {/* <Image alt="" height={77} priority src="/assets/image.jpg" width={128} /> */}
+      <Todos />
+      <p>SERVER v</p>
+      <ServerTodos />
     </PageLayout>
   );
 }

@@ -1,6 +1,6 @@
 import createIntlMiddleware from "next-intl/middleware";
 import { locales, pathnames } from "./navigation";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { withAuth } from "next-auth/middleware";
 
 const publicPages = [
@@ -46,5 +46,5 @@ export default function middleware(req: NextRequest) {
 
 export const config = {
   // Skip all paths that should not be internationalized
-  matcher: ["/((?!_next|.*\\..*).*)"],
+  matcher: ['/((?!api|_next|.*\\..*).*)']
 };
